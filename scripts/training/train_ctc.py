@@ -5,6 +5,7 @@ from dataclasses import dataclass
 from pathlib import Path
 import sys
 
+import librosa
 import pandas as pd
 import torch
 import torchaudio
@@ -37,11 +38,9 @@ class ManifestDataset(Dataset):
 
     def __getitem__(self, idx: int):
         row = self.df.iloc[idx]
-        wav, sr = torchaudio.load(str(row["audio_path"]))
-        if sr != self.sample_rate:
-            wav = torchaudio.functional.resample(wav, sr, self.sample_rate)
-        if wav.shape[0] > 1:
-            wav = wav.mean(dim=0, keepdim=True)
+        # Use librosa loading to avoid backend-specific torchaudio codec issues.
+        audio, _ = librosa.load(str(row["audio_path"]), sr=self.sample_rate, mono=True)
+        wav = torch.tensor(audio, dtype=torch.float32).unsqueeze(0)
 
         feat = self.mel(wav).squeeze(0).transpose(0, 1)
         text = str(row["text"])
