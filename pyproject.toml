@@ -8,7 +8,21 @@ version = "0.1.0"
 description = "Deep learning based Arabic speech-to-text and intelligent audio analysis"
 readme = "README.md"
 requires-python = ">=3.10"
-dependencies = []
+dependencies = [
+	"streamlit>=1.33.0",
+	"torch>=2.1.0",
+	"torchaudio>=2.1.0",
+	"transformers>=4.39.0",
+	"librosa>=0.10.1",
+	"soundfile>=0.12.1",
+	"numpy>=1.24.0",
+	"pandas>=2.0.0",
+	"datasets>=2.18.0",
+	"sentence-transformers>=2.5.1",
+	"scikit-learn>=1.3.0",
+	"jiwer>=3.0.3",
+	"pyyaml>=6.0.1",
+]
 
 [tool.setuptools]
 package-dir = {"" = "src"}

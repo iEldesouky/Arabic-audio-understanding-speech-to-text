@@ -1,0 +1,20 @@
+models:
+  asr_backend: whisper
+  whisper_model: openai/whisper-small
+  wav2vec_model: jonatasgrosman/wav2vec2-large-xlsr-53-arabic
+  summary_model: csebuetnlp/mT5_multilingual_XLSum
+  emotion_model: ehcalabres/wav2vec2-lg-xlsr-en-speech-emotion-recognition
+
+pipeline:
+  enable_summary: true
+  enable_search: true
+  enable_speaker_id: true
+  enable_emotion: true
+  speaker_count: 2
+  chunk_seconds: 2.0
+  default_keywords:
+    - emergency
+    - deadline
+    - exam
+    - طوارئ
+    - امتحان
