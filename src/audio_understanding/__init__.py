@@ -1,3 +1,3 @@
 """Arabic audio understanding package."""
 
-__all__ = ["config", "pipeline"]
+__all__ = ["asr", "simple_pipeline", "utils"]
